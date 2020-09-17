@@ -16,7 +16,7 @@
 			</div>
 		</div>
 		<h5>Person Form</h5>
-		<form method="post" th:action="@{/person/save}" th:object="${person}">
+		<form method="post" th:action="@{/person/save}" th:object="${person}" enctype="multipart/form-data">
 			<div class="form-group"> 
 				<label for="">Name</label> 
 				<input type="text" class="form-control" id="" th:field="*{name}">
@@ -28,6 +28,10 @@
 			<div class="form-group">
 				<label for="">Domain</label> 
 				<input type="text" class="form-control" id="" th:field="*{domain}">
+			</div>
+			<div class="form-group">
+				<label for="">Resume</label> 
+				<input type="file" class="form-control" id="" th:field="*{resume}">
 			</div>
 			<button type="submit" class="btn btn-primary">Submit</button>
 		</form>

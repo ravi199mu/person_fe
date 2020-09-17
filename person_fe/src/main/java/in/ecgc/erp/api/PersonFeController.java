@@ -31,11 +31,13 @@ public class PersonFeController {
 	
 	@PostMapping(value = "/save")
 	public String savePersonDetails(@ModelAttribute Person person,Model model) {
+		//System.out.println(person.getResume().getOriginalFilename());
 		String response = personService.savePersonDetails(person);
 		if(response!=null) {
 			System.out.println(response);
 			model.addAttribute("msg", response);
 		}
+		model.addAttribute("person", new Person());
 		return "person";
 	}
 	
@@ -68,5 +70,12 @@ public class PersonFeController {
 		List<Person> updatedList = personService.deletePersonById(id);
 		model.addAttribute("list", updatedList);
 		return "persons";
+	}
+	
+	//download file 
+	@GetMapping("/download/{personId}")
+	public String getResumeByPersonId(@PathVariable("personId") int id) {
+		personService.getResumeByPersonId(id);
+		return "";
 	}
 }
