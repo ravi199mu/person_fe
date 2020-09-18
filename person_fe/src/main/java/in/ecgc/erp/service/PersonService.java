@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -43,7 +44,7 @@ public class PersonService {
 		
 		ResponseEntity<Person> response = personBEServiceClient.savePersonDetails(person);
 		Person p = response.getBody();
-		System.out.println(p);
+		
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.MULTIPART_FORM_DATA);
 		
@@ -77,7 +78,22 @@ public class PersonService {
 		return personBEServiceClient.deletePersonById(id).getBody();
 	}
 
-	public void getResumeByPersonId(int id) {
-		personBEServiceClient.getResumeByPersonId(id);
+	public Person getResumeByPersonId(int id) {
+		
+
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.MULTIPART_FORM_DATA);
+		
+		MultiValueMap<String, Object> map = new LinkedMultiValueMap<>();
+		map.add("id", id);
+		
+		HttpEntity<MultiValueMap<String, Object>> requestEntity = new HttpEntity<>(map,headers);
+		
+		//.postForEntity(baseUrl+"/downlaod/{id}", requestEntity, Person.class);
+		ResponseEntity<Person> personResponse = restTemplate.exchange(baseUrl+"/downlaod/{id}", HttpMethod.GET, requestEntity, Person.class);
+		
+		//write the file here
+		
+		return personResponse.getBody();
 	}
 }

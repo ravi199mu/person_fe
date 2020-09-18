@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Person Details</title>
+<link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.5.2/css/bootstrap.min.css}">
+</head>
+<body>
+	<div class="container mt-5">
+		<div th:if="${msg}">
+			<div class="alert alert-success alert-dismissible fade show" role="alert">
+			  <span th:text="${msg}"></span>
+			  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			    <span aria-hidden="true">&times;</span>
+			  </button>
+			</div>
+		</div>
+		<h5>Person Details</h5>
+			<div class="form-group"> 
+				<label for="">Name</label> 
+				<span th:text="${personDetails.name}"></span>
+			</div>
+			<div class="form-group">
+				<label for="">Email</label> 
+				<span th:text="${personDetails.email}"></span>
+			</div>
+			<div class="form-group">
+				<label for="">Domain</label> 
+				<span th:text="${personDetails.domain}"></span>
+			</div>
+			<div class="form-group">
+				<label for="">File Reference Number</label> 
+				<span th:text="${personDetails.fileid}"></span>
+			</div>
+			<div class="form-group">
+				<label for="">Resume</label> 
+				<a th:href="@{'/person/download/'+{personDetails.id}}">Download Resume</a>
+			</div>
+			<!-- <button type="submit" class="btn btn-primary">Submit</button> -->
+	</div>
+
+	<script th:src="@{/webjars/bootstrap/4.5.2/js/bootstrap.min.js}"></script>
+</body>
+</html>

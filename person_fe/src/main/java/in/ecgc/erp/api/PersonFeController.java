@@ -29,6 +29,7 @@ public class PersonFeController {
 		return "person";
 	}
 	
+	//save basic details and upload in service
 	@PostMapping(value = "/save")
 	public String savePersonDetails(@ModelAttribute Person person,Model model) {
 		//System.out.println(person.getResume().getOriginalFilename());
@@ -58,11 +59,12 @@ public class PersonFeController {
 		return "persons";
 	}
 	
-	@GetMapping(value="get/{id}")
+	@GetMapping(value="/get/{id}")
 	public String getPersonDetailsUsingId(@PathVariable Integer id,Model model){
+		System.out.println("inside fe controller of get person");
 		Person person = personService.getPersonDetailsUsingId(id);
-		model.addAttribute("person", person);
-		return "";
+		model.addAttribute("personDetails", person);
+		return "personinfo";
 	}
 	
 	@GetMapping(value = "delete/{id}")
@@ -74,8 +76,10 @@ public class PersonFeController {
 	
 	//download file 
 	@GetMapping("/download/{personId}")
-	public String getResumeByPersonId(@PathVariable("personId") int id) {
-		personService.getResumeByPersonId(id);
-		return "";
+	public String getResumeByPersonId(@PathVariable("personId") int id,Model model) {
+		Person personDetailsWithResume = personService.getResumeByPersonId(id);
+		System.out.println(personDetailsWithResume);
+		model.addAttribute("personDetails", personDetailsWithResume);
+		return "personinfo";
 	}
 }

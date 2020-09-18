@@ -33,7 +33,7 @@ public interface PersonBEServiceClient {
 	@DeleteMapping(value = "/persons/delete/{id}",produces = MediaType.APPLICATION_JSON_VALUE,consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Person>> deletePersonById(@PathVariable Integer id);
 
-	@GetMapping(value = "/persons/download/{personId}",produces = MediaType.APPLICATION_JSON_VALUE,consumes = MediaType.APPLICATION_JSON_VALUE)
-	public void getResumeByPersonId(@PathVariable("personId") Integer id);
+//	@GetMapping(value = "/persons/download/{personId}",produces = MediaType.APPLICATION_JSON_VALUE,consumes = MediaType.APPLICATION_JSON_VALUE)
+//	public ResponseEntity<Person> getResumeByPersonId(@PathVariable("personId") Integer id);
 	
 }
