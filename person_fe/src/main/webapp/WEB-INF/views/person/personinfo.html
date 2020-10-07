@@ -16,25 +16,37 @@
 			</div>
 		</div>
 		<h5>Person Details</h5>
+		<div class="form-group"> 
+				<label for="">Id : </label> 
+				<span th:text="${personDetails.id}"></span>
+			</div>
 			<div class="form-group"> 
-				<label for="">Name</label> 
+				<label for="">Name : </label> 
 				<span th:text="${personDetails.name}"></span>
 			</div>
 			<div class="form-group">
-				<label for="">Email</label> 
+				<label for="">Email : </label> 
 				<span th:text="${personDetails.email}"></span>
 			</div>
 			<div class="form-group">
-				<label for="">Domain</label> 
+				<label for="">Domain : </label> 
 				<span th:text="${personDetails.domain}"></span>
 			</div>
 			<div class="form-group">
-				<label for="">File Reference Number</label> 
-				<span th:text="${personDetails.fileid}"></span>
+				<label for="">File Reference Number : </label> 
+				<span th:text="${personDetails.fileId}"></span>
 			</div>
 			<div class="form-group">
-				<label for="">Resume</label> 
-				<a th:href="@{'/person/download/'+{personDetails.id}}">Download Resume</a>
+				<label for="">File Type : </label> 
+				<span th:text="${personDetails.fileType}"></span>
+			</div>
+			<div class="form-group">
+				<label for="">File Name : </label> 
+				<span th:text="${personDetails.fileName}"></span>
+			</div>
+			<div class="form-group">
+				<label for="">Resume : </label> 
+				<a th:href="@{'/person/download/'+ ${personDetails.id}}">Download Resume</a>
 			</div>
 			<!-- <button type="submit" class="btn btn-primary">Submit</button> -->
 	</div>
